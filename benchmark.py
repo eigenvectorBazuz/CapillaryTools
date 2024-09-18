@@ -50,7 +50,7 @@ def assign_bbox_ids(L1, L2, iou_threshold=0.9):
     return L1_ids, L2_ids  # Return two separate lists
 
 def compare_bboxes(gt_bboxes, det_bboxes, p=0.5, iou=0.8):
-    L1_ids, L2_ids = assign_bbox_ids(gt_bboxes, det_bboxes, iou=iou)
+    L1_ids, L2_ids = assign_bbox_ids(gt_bboxes, det_bboxes, iou_threshold=iou)
     r = rbo(L1_ids, L2_ids, p=p)
     return r['res']
   
