@@ -22,7 +22,7 @@ def iou_torchvision(box1, box2):
 def assign_bbox_ids(L1, L2, iou=0.9):
     if isinstance(L1, (float, int)):
         L1 = [L1]
-    if isinstance(box2, (float, int)):
+    if isinstance(L2, (float, int)):
         L2 = [L2]
     
     next_id = 1
