@@ -4,7 +4,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 import random
-import rbo
+from dlukes import rbo
 
 # Use torchvision for IoU calculation
 def iou_torchvision(box1, box2):
@@ -28,7 +28,7 @@ def assign_bbox_ids(L1, L2, iou_threshold=0.9):
     for i, box1 in enumerate(L1):
         matched = False
         for j, box2 in enumerate(L2):
-            if j in matched_L2:
+            if j in matched_L2:o
                 continue
             if iou_torchvision(box1, box2) >= iou_threshold:
                 L1_ids.append(next_id)
@@ -50,5 +50,7 @@ def assign_bbox_ids(L1, L2, iou_threshold=0.9):
     return L1_ids, L2_ids  # Return two separate lists
 
 def compare_bboxes(gt_bboxes, det_bboxes, p=0.5, iou=0.8):
-    assign_bbox_ids
+    L1_ids, L2_ids = assign_bbox_ids(gt_bboxes, det_bboxes, iou=iou)
+    r = rbo(L1_ids, L2_ids, p=p)
+    return r['res']
   
