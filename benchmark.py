@@ -53,5 +53,5 @@ def compare_bboxes(gt_bboxes, det_bboxes, p=0.5, iou=0.8):
     print(iou)
     L1_ids, L2_ids = assign_bbox_ids(gt_bboxes, det_bboxes, iou)
     r = rbo(L1_ids, L2_ids, p=p)
-    return r['res']
+    return r.res
   
