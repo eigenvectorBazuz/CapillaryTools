@@ -8,10 +8,6 @@ from .rbo import rbo
 
 # Use torchvision for IoU calculation
 def iou_torchvision(box1, box2):
-    if isinstance(box1, (float, int)):
-        box1 = [box1]
-    if isinstance(box2, (float, int)):
-        box2 = [box2]
     
     box1 = [box1[0], box1[1], box1[0] + box1[2], box1[1] + box1[3]]
     box2 = [box2[0], box2[1], box2[0] + box2[2], box2[1] + box2[3]]
@@ -24,6 +20,11 @@ def iou_torchvision(box1, box2):
 
 # Function to assign unique IDs based on IoU matching across two lists of bboxes
 def assign_bbox_ids(L1, L2, iou=0.9):
+    if isinstance(L1, (float, int)):
+        L1 = [L1]
+    if isinstance(box2, (float, int)):
+        L2 = [L2]
+    
     next_id = 1
     L1_ids = []
     L2_ids = [-1] * len(L2)  # Pre-fill L2 with placeholders
