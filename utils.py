@@ -75,7 +75,7 @@ def display_bboxes_with_global_id(root_dir, global_id, class_names=None):
         cv2.putText(img_rgb, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
 
         # Draw the serial number near the box (a bit below the box)
-        cv2.putText(img_rgb, f"#{i}", (x1, y2 + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+        cv2.putText(img_rgb, f"#{i}", (x1, y2 - 20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
 
     # Display the image with bounding boxes
     plt.figure(figsize=(10, 10))
