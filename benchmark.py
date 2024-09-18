@@ -28,7 +28,7 @@ def assign_bbox_ids(L1, L2, iou_threshold=0.9):
     for i, box1 in enumerate(L1):
         matched = False
         for j, box2 in enumerate(L2):
-            if j in matched_L2:o
+            if j in matched_L2:
                 continue
             if iou_torchvision(box1, box2) >= iou_threshold:
                 L1_ids.append(next_id)
