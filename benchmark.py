@@ -8,6 +8,11 @@ from .rbo import rbo
 
 # Use torchvision for IoU calculation
 def iou_torchvision(box1, box2):
+    if isinstance(box1, (float, int)):
+        box1 = [box1]
+    if isinstance(box2, (float, int)):
+        box2 = [box2]
+    
     box1 = [box1[0], box1[1], box1[0] + box1[2], box1[1] + box1[3]]
     box2 = [box2[0], box2[1], box2[0] + box2[2], box2[1] + box2[3]]
     
