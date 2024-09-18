@@ -209,3 +209,28 @@ def find_class_1_indices(root_dir):
             class_1_filenames.append(file_name)
 
     return class_1_indices, class_1_filenames
+
+# helper function to access the db and retrieve the gt
+def get_gt_bboxes(yolo_results)
+ file_name = yolo_results.path
+    # img_path = os.path.join(root_dir, 'images', file_name + '.png')
+    # bbox_path = os.path.join(root_dir, 'bboxes', file_name + '.txt')
+    img_path = file_name
+    bbox_path = file_name.replace('images', 'bboxes').replace('png', 'txt')
+
+    # Load the image
+    img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
+    if img is None:
+        print(f"Image {file_name}.png not found in {root_dir}/images")
+        return
+
+    img_rgb_gt = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)  # GT image copy
+    img_rgb_yolo = img_rgb_gt.copy()                    # YOLO image copy
+
+    # 1. Display Ground Truth Boxes
+    if os.path.exists(bbox_path):
+        with open(bbox_path, 'r') as f:
+            bboxes = f.readlines()
+
+        for i, bbox in enumerate(bboxes):
+            class_id, confidence, x, y, width, height = map(float, bbox.strip().split())
