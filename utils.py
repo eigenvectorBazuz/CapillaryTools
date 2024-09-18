@@ -70,7 +70,7 @@ def display_comparison_with_annotator(root_dir, class_names=None, yolo_results=N
 
 
 
-
+# OBSOLETE
 def display_bboxes_with_global_id(root_dir, global_id, class_names=None):
     """
     Displays an image with its ground truth bounding boxes and serial numbers, based on global ID.
