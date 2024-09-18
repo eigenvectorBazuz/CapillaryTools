@@ -8,8 +8,8 @@ from rbo import rbo
 
 # Use torchvision for IoU calculation
 def iou_torchvision(box1, box2):
-    box1 = [box1[2], box1[3], box1[2] + box1[4], box1[3] + box1[5]]
-    box2 = [box2[2], box2[3], box2[2] + box2[4], box2[3] + box2[5]]
+    box1 = [box1[0], box1[1], box1[0] + box1[2], box1[1] + box1[3]]
+    box2 = [box2[0], box2[1], box2[0] + box2[2], box2[1] + box2[3]]
     
     box1_tensor = torch.tensor([box1], dtype=torch.float32)
     box2_tensor = torch.tensor([box2], dtype=torch.float32)
