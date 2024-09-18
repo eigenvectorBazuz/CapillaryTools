@@ -18,7 +18,7 @@ def iou_torchvision(box1, box2):
     return iou_value.item()
 
 # Function to assign unique IDs based on IoU matching across two lists of bboxes
-def assign_bbox_ids(L1, L2, iou_threshold=0.9):
+def assign_bbox_ids(L1, L2, iou=0.9):
     next_id = 1
     L1_ids = []
     L2_ids = [-1] * len(L2)  # Pre-fill L2 with placeholders
@@ -30,7 +30,7 @@ def assign_bbox_ids(L1, L2, iou_threshold=0.9):
         for j, box2 in enumerate(L2):
             if j in matched_L2:
                 continue
-            if iou_torchvision(box1, box2) >= iou_threshold:
+            if iou_torchvision(box1, box2) >= iou:
                 L1_ids.append(next_id)
                 L2_ids[j] = next_id  # Match L2[j] with L1[i]
                 matched_L2.add(j)
@@ -51,7 +51,7 @@ def assign_bbox_ids(L1, L2, iou_threshold=0.9):
 
 def compare_bboxes(gt_bboxes, det_bboxes, p=0.5, iou=0.8):
     print(iou)
-    L1_ids, L2_ids = assign_bbox_ids(gt_bboxes, det_bboxes, iou_threshold=iou)
+    L1_ids, L2_ids = assign_bbox_ids(gt_bboxes, det_bboxes, iou=iou)
     r = rbo(L1_ids, L2_ids, p=p)
     return r['res']
   
