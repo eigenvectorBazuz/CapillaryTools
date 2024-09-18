@@ -3,15 +3,6 @@ import cv2
 import matplotlib.pyplot as plt
 
 
-def load_file_list(root_dir):
-    """
-    Loads the file_list.txt and returns a list of filenames (without extensions).
-    """
-    file_list_path = os.path.join(root_dir, 'file_list.txt')
-    with open(file_list_path, 'r') as f:
-        filenames = [line.strip() for line in f]
-    return filenames
-
 def display_bboxes_with_global_id(root_dir, global_id, class_names=None):
     """
     Displays an image with its ground truth bounding boxes and serial numbers, based on global ID.
