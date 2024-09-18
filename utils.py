@@ -1,5 +1,6 @@
 import os
 import cv2
+import numpy as np
 import matplotlib.pyplot as plt
 from ultralytics.utils.plotting import Annotator
 
@@ -211,26 +212,12 @@ def find_class_1_indices(root_dir):
     return class_1_indices, class_1_filenames
 
 # helper function to access the db and retrieve the gt
-def get_gt_bboxes(yolo_results)
- file_name = yolo_results.path
-    # img_path = os.path.join(root_dir, 'images', file_name + '.png')
-    # bbox_path = os.path.join(root_dir, 'bboxes', file_name + '.txt')
-    img_path = file_name
+def get_gt_bboxes(root_dir, yolo_results):
+    file_name = yolo_results.path
     bbox_path = file_name.replace('images', 'bboxes').replace('png', 'txt')
 
-    # Load the image
-    img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
-    if img is None:
-        print(f"Image {file_name}.png not found in {root_dir}/images")
-        return
+    # Load the third to sixth columns (index 2 to 5 in zero-based indexing) into a numpy array
+    bboxes = np.loadtxt(bbox_path, usecols=(2, 3, 4, 5))
 
-    img_rgb_gt = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)  # GT image copy
-    img_rgb_yolo = img_rgb_gt.copy()                    # YOLO image copy
+    return bboxes
 
-    # 1. Display Ground Truth Boxes
-    if os.path.exists(bbox_path):
-        with open(bbox_path, 'r') as f:
-            bboxes = f.readlines()
-
-        for i, bbox in enumerate(bboxes):
-            class_id, confidence, x, y, width, height = map(float, bbox.strip().split())
