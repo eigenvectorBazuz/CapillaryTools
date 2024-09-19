@@ -26,7 +26,10 @@ def display_comparison_with_annotator(root_dir, class_names=None, yolo_results=N
         return
 
     img_rgb_gt = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)  # GT image copy
-    img_rgb_yolo = img_rgb_gt.copy()                    # YOLO image copy
+    if overlay:
+        img_rgb_yolo = img_rgb_gt
+    else:
+        img_rgb_yolo = img_rgb_gt.copy()                    # YOLO image copy
 
     # 1. Display Ground Truth Boxes
     if os.path.exists(bbox_path):
