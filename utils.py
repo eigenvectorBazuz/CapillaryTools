@@ -65,10 +65,11 @@ def display_comparison_with_annotator(root_dir, class_names=None, yolo_results=N
     ax[0].imshow(cv2.cvtColor(img_rgb_gt, cv2.COLOR_BGR2RGB))
     ax[0].set_title("Ground Truth")
     ax[0].axis('off')
-    
-    ax[1].imshow(cv2.cvtColor(img_with_annotations, cv2.COLOR_BGR2RGB))
-    ax[1].set_title("YOLO Predictions with Annotator")
-    ax[1].axis('off')
+
+    if not overlay:
+        ax[1].imshow(cv2.cvtColor(img_with_annotations, cv2.COLOR_BGR2RGB))
+        ax[1].set_title("YOLO Predictions with Annotator")
+        ax[1].axis('off')
 
     plt.show()
 
