@@ -61,7 +61,7 @@ def display_comparison_with_annotator(root_dir, class_names=None, yolo_results=N
     img_with_annotations = annotator.result()  
 
     if overlay:
-        fig, ax = plt.figure(figsize=(15, 10))
+        fig, ax = plt.subplots(figsize=(15, 10))
         ax.imshow(cv2.cvtColor(img_rgb_gt, cv2.COLOR_BGR2RGB))
         ax.set_title("Ground Truth + YOLO Predictions")
         # ax[0].axis('off')
